@@ -13,6 +13,12 @@ class WeRead2Feishu:
         # 自动识别您在 GitHub Secrets 填写的密钥
         self.cookie = os.environ.get("WEREAD_COOKIE")
         self.app_id = os.environ.get("FEISHU_APP_ID")
+        
+        # --- 物理调试：检查变量是否真的进来了 ---
+        if not self.cookie:
+            print("❌ 核心警报：系统完全没读到 WEREAD_COOKIE！请检查 Secrets 名字是否写错。")
+        else:
+            print(f"✅ 变量已加载，长度为: {len(self.cookie)}，首字母为: {self.cookie[0]}")
         self.app_secret = os.environ.get("FEISHU_APP_SECRET")
         self.session = requests.Session()
         self.session.headers.update({
