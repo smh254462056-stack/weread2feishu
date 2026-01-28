@@ -5,13 +5,13 @@ import time
 
 class WeRead2Feishu:
     def __init__(self):
-        # 1. 自动从 GitHub Secrets 读取密钥
+        # 1. 自动读取 GitHub Secrets 密钥
         self.cookie = os.environ.get("WEREAD_COOKIE")
         self.app_id = os.environ.get("FEISHU_APP_ID")
         self.app_secret = os.environ.get("FEISHU_APP_SECRET")
         self.app_token = os.environ.get("FEISHU_APP_TOKEN")
         
-        # 2. 您的物理 Table ID
+        # 2. 定位物理 Table ID
         self.table_id = "tblmH78Bv3p9W5kR" 
 
     def get_feishu_token(self):
@@ -30,27 +30,27 @@ class WeRead2Feishu:
             return None
 
     def run(self):
-        """同步执行引擎"""
+        """同步执行主逻辑"""
         token = self.get_feishu_token()
         if not token:
             return
 
-        # 3. 构造飞书多维表格写入地址
+        # 3. 构造真实的飞书多维表格写入地址
         write_url = f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.app_token}/tables/{self.table_id}/records"
         headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json; charset=utf-8"
         }
         
-        # 4. 构造写入载荷 (确保飞书表头包含“书名”字段)
+        # 4. 构造写入载荷 (请确保飞书表头有“书名”和“状态”这两列)
         payload = {
             "fields": {
-                "书名": "✅ 自动化同步物理测试成功",
-                "状态": "已同步"
+                "书名": "✅ 数字化同步链路已打通",
+                "状态": "同步成功"
             }
         }
         
-        print(f"🚀 启动生产同步引擎，目标表: {self.table_id}...") 
+        print(f"🚀 正在向飞书写入测试数据... 目标表: {self.table_id}") 
         
         try:
             # 5. 执行真实的物理写入动作
@@ -58,10 +58,10 @@ class WeRead2Feishu:
             result = response.json()
             
             if result.get("code") == 0:
-                print("✨ [核心资产搬运成功] 飞书已接收数据！")
+                print("✨ [大功告成] 飞书已成功接收并保存数据！")
             else:
-                print(f"⚠️ 飞书响应异常: {result.get('msg')}")
-                print(f"💡 排障提示: 请检查机器人是否已加入该多维表格。")
+                print(f"⚠️ 飞书返回错误: {result.get('msg')}")
+                print(f"💡 建议检查: 机器人是否已添加进表格、列名是否匹配。")
         except Exception as e:
             print(f"❌ 写入发生致命错误: {e}")
 
