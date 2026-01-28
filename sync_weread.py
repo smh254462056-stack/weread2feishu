@@ -10,7 +10,7 @@ class WeRead2Feishu:
         self.app_id = os.environ.get("FEISHU_APP_ID")
         self.app_secret = os.environ.get("FEISHU_APP_SECRET")
         self.app_token = os.environ.get("FEISHU_APP_TOKEN")
-        self.table_id = "tblXXXXXX" # 请在此处填入您飞书多维表格的 Table ID
+        self.table_id = "tblmH78Bv3p9W5kR" # 请在此处填入您飞书多维表格的 Table ID
 
     def get_feishu_token(self):
         url = "https://open.feishu.cn/open-apis/auth/v3/app_access_token/internal"
