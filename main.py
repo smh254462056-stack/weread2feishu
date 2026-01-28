@@ -43,19 +43,20 @@ class WeRead2Feishu:
             "Content-Type": "application/json; charset=utf-8"
         }
         
-        # 4. 四维度数据封装 (匹配您的最新表头：书名、状态、笔记、阅读日期)
+        # 4. 数据封装：匹配您的表头：书名、状态、笔记、阅读日期
         payload = {
             "fields": {
                 "书名": "✅ 慧敏的自动化系统点火测试", 
                 "状态": "同步成功",
-                "笔记": "恭喜！当您看到这行字，说明从 GitHub 到您个人飞书的链路已彻底打通。",
-                "阅读日期": int(time.time() * 1000) 
+                "笔记": "链路彻底打通！书名、状态、笔记、日期四个维度已实现物理对齐。",
+                "阅读日期": int(time.time() * 1000) # 飞书日期字段需 13 位毫秒级时间戳
             }
         }
         
         print(f"🚀 正在向新表写入数据... 目标 Table ID: {self.table_id}") 
         
         try:
+            # 5. 执行物理写入动作
             response = requests.post(write_url, headers=headers, json=payload)
             result = response.json()
             
@@ -63,7 +64,7 @@ class WeRead2Feishu:
                 print("✨ [大功告成] 数据已成功同步至“慧敏-个人图书馆”！")
             else:
                 print(f"⚠️ 写入失败: {result.get('msg')}")
-                print(f"💡 检查建议：确保您的飞书应用已加入该表，且 Secrets 中的 App Token 已更新为 UnKY...Bg")
+                print(f"💡 关键确认: 请确保您的飞书应用已加入该表（右上角... -> 管理 -> 添加应用）")
         except Exception as e:
             print(f"❌ 运行发生异常: {e}")
 
