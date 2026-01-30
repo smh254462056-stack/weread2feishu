@@ -41,7 +41,7 @@ class WeRead2Feishu:
             }
         }
         
-        print(f"📡 正在尝试穿透物理路径... AppToken: {self.app_token[:5]}***")
+        print(f"📡 正在尝试穿透物理路径... AppToken: {str(self.app_token)[:5]}***")
         res = requests.post(url, headers=headers, json=payload).json()
         
         if res.get("code") == 0:
