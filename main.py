@@ -13,7 +13,7 @@ class WeRead2Feishu:
         self.app_token = os.environ.get("FEISHU_APP_TOKEN")
         
         # 2. 定位“慧敏的智库·悦读时光”的真实物理 ID
-        self.table_id = "tbl8fI2VQpHdfPT7" 
+        self.table_id = "tbl8fl2VQpHdfPT7" 
 
     def get_feishu_token(self):
         """获取飞书授权令牌"""
