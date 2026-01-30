@@ -15,8 +15,10 @@ jobs:
       - name: Install dependencies
         run: pip install requests
       - name: Run sync script
-        run: python main.py
         env:
           WEREAD_COOKIE: ${{ secrets.WEREAD_COOKIE }}
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_APP_TOKEN: ${{ secrets.FEISHU_APP_TOKEN }}
+        run: |
+          python main.py
