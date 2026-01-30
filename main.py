@@ -12,8 +12,8 @@ class WeRead2Feishu:
         self.app_secret = os.environ.get("FEISHU_APP_SECRET")
         self.app_token = os.environ.get("FEISHU_APP_TOKEN")
         
-        # 2. 定位“慧敏-个人图书馆”的真实物理 ID
-        self.table_id = "tblYVQUs42AcNa3C" 
+        # 2. 定位“慧敏的智库·悦读时光”的真实物理 ID
+        self.table_id = "tbl8fI2VQpHdfPT7" 
 
     def get_feishu_token(self):
         """获取飞书授权令牌"""
@@ -61,7 +61,7 @@ class WeRead2Feishu:
             result = response.json()
             
             if result.get("code") == 0:
-                print("✨ [大功告成] 数据已成功同步至“慧敏-个人图书馆”！")
+                print("✨ [大功告成] 数据已成功同步至“慧敏的智库·悦读时光”！")
             else:
                 print(f"⚠️ 写入失败: {result.get('msg')}")
                 print(f"💡 关键确认: 请确保您的飞书应用已加入该表（右上角... -> 管理 -> 添加应用）")
