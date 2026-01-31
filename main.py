@@ -4,14 +4,11 @@ import time
 
 class WeRead2Feishu:
     def __init__(self):
-        # 从环境变量读取配置（匹配 GitHub Secrets 中的变量名）
-        self.app_id = os.environ.get("FEISHU_APP_ID", "").strip()
-        self.app_secret = os.environ.get("FEISHU_APP_SECRET", "").strip()
-        self.app_token = os.environ.get("TABLE_ID", "").strip()  # 对应你填的 Base ID
-        
-        # 从环境变量读取 Table ID（建议新增一个 SECRET：FEISHU_TABLE_ID）
-        # 如果你暂时不想新增，也可以直接替换成正确的 Table ID
-        self.table_id = os.environ.get("FEISHU_TABLE_ID", "tbl8f12VQpHdfPT7").strip()
+        # 临时硬编码配置（已修正所有错误）
+        self.app_id = "cli_a9f927488bf85bb4"  # 正确的 App ID
+        self.app_secret = "vowvL97Cpa8R32QlLSyrRgOIEUGqFTeu"  # 修正后的 App Secret
+        self.app_token = "MJ31b6FyKaPqRBsVjvHc4Qjbnkd"  # 正确的 Base ID
+        self.table_id = "tbl8f12VQpHdfPT7"  # 正确的 Table ID
 
     def get_token(self):
         """获取飞书应用访问令牌"""
@@ -31,11 +28,7 @@ class WeRead2Feishu:
         """核心运行逻辑"""
         # 1. 校验基础配置
         if not all([self.app_id, self.app_secret, self.app_token, self.table_id]):
-            print(f"❌ 配置不完整！请检查以下变量：")
-            print(f"   - FEISHU_APP_ID: {'✅' if self.app_id else '❌'}")
-            print(f"   - FEISHU_APP_SECRET: {'✅' if self.app_secret else '❌'}")
-            print(f"   - TABLE_ID (Base ID): {'✅' if self.app_token else '❌'}")
-            print(f"   - FEISHU_TABLE_ID (Table ID): {'✅' if self.table_id else '❌'}")
+            print(f"❌ 配置不完整！请检查是否填写了所有参数")
             return
         
         # 2. 获取访问令牌
