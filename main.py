@@ -6,7 +6,7 @@ class WeRead2Feishu:
     def __init__(self):
         # 临时硬编码配置（已修正所有错误）
         self.app_id = "cli_a9f927488bf85bb4"  # 正确的 App ID
-        self.app_secret = "vowvL97Cpa8R32QlLSyrRgOIEUGqFTeu"  # 修正后的 App Secret
+        self.app_secret = "1OykXXzevWdOIlkJgPxjFhtwImT0FEdU"  # 修正后的 App Secret
         self.app_token = "MJ31b6FyKaPqRBsVjvHc4Qjbnkd"  # 正确的 Base ID
         self.table_id = "tbl8f12VQpHdfPT7"  # 正确的 Table ID
 
